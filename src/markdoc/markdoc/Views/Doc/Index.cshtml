@@ -1,0 +1,14 @@
+﻿@model List<markdoc.Data.Document>
+
+<h1>Docs</h1>
+
+<div class="form-group">
+    <a class="btn btn-success" asp-action="Create">Create</a>
+</div>
+
+<div class="item-group">
+@foreach(var doc in Model)
+{
+    <a asp-action="ViewDoc" asp-route-id="@doc.Id" class="list-group-item list-group-item-action">@doc.Title</a>
+}
+</div>
