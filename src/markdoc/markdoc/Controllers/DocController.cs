@@ -26,12 +26,9 @@ namespace markdoc.Controllers
         [HttpPost]
         public async Task<IActionResult> ImageUpload(IFormFile file)
         {
-            var imageName = file.Name;
-
             var webRootPath = _HostingEnvironment.WebRootPath;
-            var contentRootPath = _HostingEnvironment.ContentRootPath;
 
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
 
             var filePath = Path.Combine(webRootPath, @"uploads", fileName);
 

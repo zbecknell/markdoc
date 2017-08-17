@@ -1,15 +1,18 @@
 ﻿
 <form asp-action="ImageUpload" class="dropzone" id="imageDropzone">
+    <div class="dz-preview dz-file-preview"></div>
+    
+    <span class="dz-message"></span>
     <div id="editor">
 ```js
-    function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-    }
+function foo(items) {
+var x = "All this is syntax highlighted";
+return x;
+}
 ```
 
 Some example **markdown** stuff here.
-</div>
+    </div>
 </form>
 
 @section Scripts{ 
@@ -21,6 +24,7 @@ Some example **markdown** stuff here.
 
     Dropzone.options.imageDropzone = {
         clickable: false,
+        previewTemplate: '<div class="alert alert-info"><span data-dz-name></span>: <span data-dz-size></span></div>',
         acceptedFiles: "image/*",
         init: function(){
             this.on("success", function(file, response) {

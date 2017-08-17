@@ -42,7 +42,7 @@ namespace markdoc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Doc}/{action=Index}/{id?}");
             });
         }
     }
