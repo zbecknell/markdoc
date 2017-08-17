@@ -1,0 +1,9 @@
+﻿@model markdoc.Data.Document
+@{
+}
+
+<div class="form-group">
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>
+
+<markdown content="Body" />

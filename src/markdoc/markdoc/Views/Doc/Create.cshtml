@@ -1,0 +1,49 @@
+﻿@model markdoc.Data.Document
+
+<form method="post">
+    <h1>@(Model.Title == null ? "Create" : "Edit")</h1> 
+
+	<div class="form-group">
+	    <button class="btn btn-success" type="submit">Save</button>
+	</div>
+	
+	<div class="form-group">
+		@Html.HiddenFor(m => m.Id, null)
+		@Html.HiddenFor(m => m.Body, null)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Title" })
+	</div>
+</form>
+
+<form asp-action="ImageUpload" class="dropzone" id="imageDropzone">
+    <div class="dz-preview dz-file-preview"></div>
+    
+    <span class="dz-message"></span>
+    <div id="editor" class="code-editor">@Model.Body</div>
+</form>
+
+@section Scripts{ 
+<script src="~/lib/ace/ace.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/solarized_light");
+    editor.getSession().setMode("ace/mode/markdown");
+
+	var bodyInput = $('#Body');
+	
+	editor.getSession().on("change", function () {
+        bodyInput.val(editor.getSession().getValue());
+    });
+
+    Dropzone.options.imageDropzone = {
+        clickable: false,
+        previewTemplate: '<span data-dz-name style="display: none"></span>',
+        acceptedFiles: "image/*",
+        init: function(){
+            this.on("success", function(file, response) {
+                var imageLink = '![alt text]('+ response.path +' "uploaded image")'
+                editor.insert(imageLink);
+            });
+        }
+    };
+</script>
+}
