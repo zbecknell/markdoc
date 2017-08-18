@@ -22,4 +22,9 @@
     <Folder Include="wwwroot\lib\prism\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\uploads\555ae17e-21b6-402d-adaf-6751e2294fc0.png" />
+    <Content Remove="wwwroot\uploads\6209b21e-ef04-462c-b69c-898971529cef.png" />
+    <Content Remove="wwwroot\uploads\a97fd7b7-209b-43d1-afce-3a670b544da2.png" />
+  </ItemGroup>
 </Project>
