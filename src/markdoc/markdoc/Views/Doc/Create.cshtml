@@ -45,5 +45,44 @@
             });
         }
     };
+
+	document.addEventListener("DOMContentLoaded", function() {
+        var pasteTarget = document.getElementById("editor");
+        
+        pasteTarget.addEventListener("paste", handlePaste);
+    });
+    function handlePaste(e) {
+        e.preventDefault();
+
+        for (var i = 0 ; i < e.clipboardData.files.length ; i++) {
+            var item = e.clipboardData.files[i];
+            console.log("Item type: " + item.type);
+            if (item.type.indexOf("image") != -1) {
+                e.preventDefault();
+                uploadFile(item);
+            }
+        }
+    }
+
+    function uploadFile(file){
+
+        var formData = new FormData();
+
+        formData.append("file", file);
+
+        $.ajax({
+            url: "/Doc/ImageUpload",
+            type: "POST",
+            data: formData,
+            processData: false, //Work around #1
+            contentType: false, //Work around #2
+            success: function(response){
+                var imageLink = '![alt text]('+ response.path +' "uploaded image")'
+                editor.insert(imageLink);
+            },
+            error: function(){alert("Failed to upload image");}
+        });
+    }
+	
 </script>
 }

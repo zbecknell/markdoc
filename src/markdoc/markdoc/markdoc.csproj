@@ -19,6 +19,7 @@
     <Folder Include="wwwroot\uploads\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="Data\" />
+    <Folder Include="wwwroot\lib\prism\" />
   </ItemGroup>
 
 </Project>
